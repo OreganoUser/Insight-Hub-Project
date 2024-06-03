@@ -17,25 +17,27 @@
 
             <div class="top">
                 <div class="top-left">
-                    <div class="menu" id="menu">
-                        <img src="../Images/bars.svg" alt="" id="menu">
-                    </div>
-                    <div class="menu-bar" id="menu-bar">
-                        <div id="menu-bar-1">
-                            <img src="../Images/accessibility-outline.svg" alt="" id="accessibility">
-                            <p>Do you need Help ?</p>
+                    <div class="menu-container">
+                        <div class="menu" id="menu">
+                            <img src="../Images/bars.svg" alt="" id="menu">
                         </div>
-                        <div id="menu-bar-2">
-                            <img src="../Images/accessibility-outline.svg" alt="" id="accessibility">
-                            <p>Do you need Help ?</p>
-                        </div>
-                        <div id="menu-bar-3">
-                            <img src="../Images/accessibility-outline.svg" alt="" id="accessibility">
-                            <p>Do you need Help ?</p>
-                        </div>
-                        <div id="menu-bar-4">
-                            <img src="../Images/accessibility-outline.svg" alt="" id="accessibility">
-                            <p>Do you need Help ?</p>
+                        <div class="menu-bar" id="menu-bar">
+                            <div id="menu-bar-1">
+                                <img src="../Images/accessibility-outline.svg" alt="" id="accessibility">
+                                <p>Do you need Help ?</p>
+                            </div>
+                            <div id="menu-bar-2">
+                                <img src="../Images/accessibility-outline.svg" alt="" id="accessibility">
+                                <p>Laera Pierluca</p>
+                            </div>
+                            <div id="menu-bar-3">
+                                <img src="../Images/accessibility-outline.svg" alt="" id="accessibility">
+                                <p>Kasztelan Olaf (Polski)</p>
+                            </div>
+                            <div id="menu-bar-4">
+                                <img src="../Images/accessibility-outline.svg" alt="" id="accessibility">
+                                <p>Lejeune Charel</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -54,7 +56,7 @@
                         <input type="password" id="password" placeholder="Password">
                         <input type="password" id="password" placeholder="Password">
                         <div class="submit">
-                            <input type="submit" id="submit">
+                            <input type="submit" id="submit" value="Sign up">
                         </div>
                     </form>
                 </div>

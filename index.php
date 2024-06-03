@@ -29,7 +29,7 @@
             </div>
             <div id="menu-bar-4">
                 <img src="Images/accessibility-outline.svg" alt="" id="accessibility">
-                <p>Lejeune Charel (sip)</p>
+                <p>Lejeune Charel</p>
             </div>
         </div>
     </div>
