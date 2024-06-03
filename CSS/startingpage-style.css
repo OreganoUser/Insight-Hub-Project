@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Freeman&family=Jaro:opsz@6..72&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: rgb(228, 222, 208);
+    font-family: "Playfair Display", sans-serif;
+}
+
+.menu-container {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    margin-top: 20px;
+    margin-left: 20px; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: left;
+    align-items: left;
+    transition: width 0.6s ease-in-out, height 0.6s ease-in-out;
+}
+
+.menu {
+    width: 30px;
+    height: 30px;
+    padding: 8px;
+    border: 3px solid black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bars-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.menu-bar {
+    top: 70px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.menu-bar div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-bar p {
+    font-family: "Playfair Display", sans-serif;
+}
+
+#accessibility {
+    width: 15px;
+    height: 15px;
+    margin-right: 15px;
+}
+
+.menu-container:hover {
+    width: 300px;
+    height: 300px;
+}
+
+.menu-container:hover .menu-bar {
+    opacity: 1;
+}
+
+.main-container {
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#background-image {
+    margin: 40px;
+    max-width: 50%;
+    max-height: 50%;
+    border-radius: 15px;
+    box-shadow: 8px 8px 10px 5px rgb(67, 67, 67);
+}
+
+.buttons {
+    width: 400px;
+    height: 150px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons button {
+    padding: 15px 35px;
+    margin: 10px;
+    background-color: rgb(226, 112, 112, 50);
+    border: 2px solid rgb(44, 44, 44);
+    border-radius: 15px;
+    display: flex;
+    font-weight: 700;
+    font-size: 12pt;
+    color: black;
+    font-family: "Playfair Display", sans-serif;
+}
+
+.buttons button:hover {
+    background-color: rgb(223, 75, 75, 50);
+}
+
+.buttons a {
+    text-decoration: none;
+}
