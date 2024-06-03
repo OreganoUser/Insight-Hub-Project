@@ -39,7 +39,7 @@ body {
     padding: 0;
     width: calc(50vw - 1px);
     height: 100vh;
-    background-color: white;
+    background-color: rgba(248,248,248);
 }
 
 .top {
@@ -133,6 +133,7 @@ body {
     width: 400px;
     height: 400px;
     box-shadow: 6px 6px 15px 6px black;
+    background-color: rgba(247,247,247);
 }
 
 #signup-image {
