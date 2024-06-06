@@ -50,13 +50,15 @@
                 <div class="signup">
                     <img src="../Images/signup-header.jpeg" alt="" id="signup-image">
                     <form action="../Includes/signup-script.php" method="POST">
-                        <input type="text" id="name" placeholder="Name">
-                        <input type="text" id="surName" placeholder="Surname">
-                        <input type="text" id="Email" placeholder="Email">
-                        <input type="password" id="password" placeholder="Password">
-                        <input type="password" id="password" placeholder="Password">
-                        <div class="submit">
-                            <input type="submit" id="submit" value="Sign up">
+                        <div class="inputs">
+                            <input type="text" id="name" placeholder="Name">
+                            <input type="text" id="surName" placeholder="Surname">
+                            <input type="text" id="Email" placeholder="Email">
+                            <input type="password" id="password1" placeholder="Password">
+                            <input type="password" id="password2" placeholder="Password">
+                            <div class="submit">
+                                <input type="submit" id="submit" value="Sign up">
+                            </div>
                         </div>
                     </form>
                 </div>

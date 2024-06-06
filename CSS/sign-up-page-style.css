@@ -160,12 +160,17 @@ body {
     margin-bottom: 50px;
 }
 
+.inputs {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
 #name,
 #surName,
 #Email,
 #password {
     padding: 5px;
-    width: 100%;
     font-family: "Playfair Display", sans-serif;
 }
 
