@@ -37,8 +37,8 @@
     <div class="main-container">
         <img src="Images/main-background.jpg" alt="background-Image" id="background-image">
         <div class="buttons">
-            <a href="Includes/login-page.php"><button>Log in</button></a>
-            <a href="Includes/signup-page.php"><button>Sign up</button></a>
+            <a href="Includes/login/login-page.php"><button>Log in</button></a>
+            <a href="Includes/signup/signup-page.php"><button>Sign up</button></a>
         </div>
     </div>
 

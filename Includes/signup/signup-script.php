@@ -1,4 +1,8 @@
 <?php
+
+// Start the session
+session_start(); 
+
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Define database connection parameters
@@ -33,39 +37,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate inputs
     $errors = array();
+
     if (empty($name)) {
         $errors[] = "Name is required";
+    } else if (!preg_match("/^[a-zA-Z ]{1,40}$/", $name)) {
+        $errors[] = "Name must be between 1 and 40 characters and contain only letters and spaces";
     }
 
     if (empty($surName)) {
         $errors[] = "Surname is required";
+    } else if (!preg_match("/^[a-zA-Z ]{1,40}$/", $surName)) {
+        $errors[] = "Surname must be between 1 and 40 characters and contain only letters and spaces";
     }
 
-    if (empty($email)) {
-        $errors[] = "Email is required";
-    }
-
-    if (empty($password1)) {
-        $errors[] = "Password is required";
-    }
-
-    if (empty($password2)) {
-        $errors[] = "Password is required";
-    }
-
-    //Add email validation
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format";
     }
 
-    // Add password validation
-    // Check if password is at least 8 characters long, contains at least one uppercase letter, one special character, and some numbers
-
-    if (strlen($password1) < 8 || !preg_match("/[A-Z]/", $password1) || !preg_match("/[0-9]/", $password1) || !preg_match("/[!@#\$%\^\&*\)\(+=._-]/", $password1)) {
-        $errors[] = "Password is incorrect";
+    if (empty($password1) || strlen($password1) < 8 || !preg_match("/[A-Z]/", $password1) || !preg_match("/[0-9]/", $password1) || !preg_match("/[!@#\$%\^\&*\)\(+=._-]/", $password1)) {
+        $errors[] = "Password must be at least 8 characters long and contain at least one uppercase letter, one special character, and some numbers";
     }
 
-    // Check if passwords match
     if ($password1 != $password2) {
         $errors[] = "Passwords do not match";
     }
@@ -76,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tableName = $surName . " " . $name;
 
         // SQL to create table
-        $sql = "CREATE TABLE IF NOT EXISTS $tableName (
+        $sql = "CREATE TABLE IF NOT EXISTS `$tableName` (
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(40) NOT NULL,
             surName VARCHAR(40) NOT NULL,
@@ -86,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($conn->query($sql) === TRUE) {
             // SQL to insert data
-            $sql = "INSERT INTO $tableName (name, surName, email, password)
+            $sql = "INSERT INTO `$tableName` (name, surName, email, password)
                     VALUES ('$name', '$surName', '$email', '$password1')";
 
             if ($conn->query($sql) === TRUE) {
@@ -98,9 +90,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error creating table: " . $conn->error;
         }
     } else {
-        // Redirect to waiting.php with error messages
-        $error_message = urlencode(implode(",", $errors));
-        header("Location: waiting.php?error=$error_message");
+        // Store errors in session and redirect to this script
+        $_SESSION['errors'] = $errors;
+        header("Location: signup-validation.php");
         exit();
     }
 
