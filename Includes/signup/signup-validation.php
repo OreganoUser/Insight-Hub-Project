@@ -24,19 +24,27 @@ if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
 </head>
 
 <body>
-    <h1>Form Submission Errors</h1>
-
-    <?php
-    if (!empty($errors)) {
-        echo '<ul class="error">';
-        foreach ($errors as $error) {
-            echo '<li>' . htmlspecialchars($error) . '</li>';
+    <div class="display">
+        <?php
+        if (!empty($errors)) {
+            echo '<ul class="error">';
+            foreach ($errors as $error) {
+                echo '<li>' . htmlspecialchars($error) . '</li>';
+            }
+            echo '</ul>';
+        } else {
+            ?>
+            <div class="header">
+                <h1>Congrats!</h1>
+                <h3>Your account was successfully created.</h3>
+            </div>
+            <div class="login">
+                <a href="../login/login-page.php"><button id="redirect">Login now</button></a>
+            </div>
+            <?php
         }
-        echo '</ul>';
-    } else {
-        echo '<p>No errors found.</p>';
-    }
-    ?>
+        ?>
+    </div>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <?php
 
 // Start the session
-session_start(); 
+session_start();
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -81,18 +81,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql = "INSERT INTO `$tableName` (name, surName, email, password)
                     VALUES ('$name', '$surName', '$email', '$password1')";
 
-            if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+            if ($conn->query($sql) != TRUE) {
+                $errors[] = "Error: " . $sql . "<br>" . $conn->error;
             }
         } else {
-            echo "Error creating table: " . $conn->error;
+            $errors[] = "Error creating table: " . $conn->error;
         }
     } else {
+        //Redirect to signup-validation.php
+        header("Location: signup-validation.php");
+
         // Store errors in session and redirect to this script
         $_SESSION['errors'] = $errors;
-        header("Location: signup-validation.php");
+        
         exit();
     }
 

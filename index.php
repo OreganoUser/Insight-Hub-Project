@@ -20,15 +20,15 @@
                 <p>Do you need Help ?</p>
             </div>
             <div id="menu-bar-2">
-                <img src="Images/accessibility-outline.svg" alt="" id="accessibility">
+                <img src="Images/arrow-forward.svg" alt="" id="accessibility">
                 <p>Laera Pierluca</p>
             </div>
             <div id="menu-bar-3">
-                <img src="Images/accessibility-outline.svg" alt="" id="accessibility">
+                <img src="Images/arrow-forward.svg" alt="" id="accessibility">
                 <p>Kasztelan Olaf (Polski)</p>
             </div>
             <div id="menu-bar-4">
-                <img src="Images/accessibility-outline.svg" alt="" id="accessibility">
+                <img src="Images/arrow-forward.svg" alt="" id="accessibility">
                 <p>Lejeune Charel</p>
             </div>
         </div>
