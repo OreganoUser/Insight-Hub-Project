@@ -27,15 +27,15 @@
                                 <p>Do you need Help ?</p>
                             </div>
                             <div id="menu-bar-2">
-                                <img src="../../Images/accessibility-outline.svg" alt="" id="accessibility">
+                                <img src="../../Images/arrow-forward.svg" alt="" id="accessibility">
                                 <p>Laera Pierluca</p>
                             </div>
                             <div id="menu-bar-3">
-                                <img src="../../Images/accessibility-outline.svg" alt="" id="accessibility">
+                                <img src="../../Images/arrow-forward.svg" alt="" id="accessibility">
                                 <p>Kasztelan Olaf (Polski)</p>
                             </div>
                             <div id="menu-bar-4">
-                                <img src="../../Images/accessibility-outline.svg" alt="" id="accessibility">
+                                <img src="../../Images/arrow-forward.svg" alt="" id="accessibility">
                                 <p>Lejeune Charel</p>
                             </div>
                         </div>
@@ -50,9 +50,9 @@
                 <div class="login">
                     <img src="../../Images/login-header.jpeg" alt="" id="login-image">
                     <h2>Please enter your credentials here.</h2>
-                    <form action="../Includes/login-script.php" method="POST">
-                        <input type="text" id="Email" placeholder="Email">
-                        <input type="password" id="password" placeholder="Password">
+                    <form action="login-script.php" method="POST">
+                        <input type="text" id="Email" name="Email" placeholder="Email">
+                        <input type="password" id="password" name="password" placeholder="Password">
                         <div class="submit">
                             <input type="submit" id="submit" value="Login">
                             <h4>If you have no account yet, <a href="signup-page.php">sign up</a> here.</h4>

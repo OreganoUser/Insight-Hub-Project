@@ -27,11 +27,23 @@ if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
     <div class="display">
         <?php
         if (!empty($errors)) {
+            ?>
+            <div class="header">
+                <h1>Error 404:</h1>
+                <h2>Sanity not found. Check your inputs!</h2>
+            </div>
+            <?php
             echo '<ul class="error">';
             foreach ($errors as $error) {
                 echo '<li>' . htmlspecialchars($error) . '</li>';
             }
             echo '</ul>';
+
+            ?>
+            <div class="login">
+                <a href="signup-page.php"><button>Go back</button></a>
+            </div>
+            <?php
         } else {
             ?>
             <div class="header">
@@ -39,7 +51,7 @@ if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
                 <h3>Your account was successfully created.</h3>
             </div>
             <div class="login">
-                <a href="../login/login-page.php"><button id="redirect">Login now</button></a>
+                <a href="../login/login-page.php"><button>Login now</button></a>
             </div>
             <?php
         }
