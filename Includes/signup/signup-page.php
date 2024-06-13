@@ -11,7 +11,7 @@
 <body>
     <div class="main">
         <div class="left-container">
-            <img src="../../Images/school.jpg" alt="" id="school-image">
+            <img src="../../Images/slides-background.jpg" alt="" id="school-image">
         </div>
         <div class="right-container">
 

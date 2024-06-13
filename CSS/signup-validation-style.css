@@ -4,12 +4,24 @@ body {
     box-sizing: border-box;
     background-color: rgb(228, 222, 208);
     height: 100vh;
+}
+
+.main {
+    width: 100vw;   
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+#background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .display {
+    position: absolute;
     display: flex;
     flex-direction: column;
     border: 2px solid back;
@@ -18,7 +30,7 @@ body {
     width: 400px;
     height: 400px;
     box-shadow: 6px 6px 15px 5px black;
-    background-color: whitesmoke;
+    background-color: rgb(228, 222, 208);
 }
 
 .header {
