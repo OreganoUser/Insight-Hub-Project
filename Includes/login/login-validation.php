@@ -24,38 +24,41 @@ if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
 </head>
 
 <body>
-    <div class="display">
-        <?php
-        if (!empty($errors)) {
-            ?>
-            <div class="header">
-                <h1>Error 404:</h1>
-                <h2>Sanity not found. Check your inputs!</h2>
-            </div>
+    <div class="main">
+        <img src="../../Images/slides-background.jpg" alt="" id="background-img">
+        <div class="display">
             <?php
-            echo '<ul class="error">';
-            foreach ($errors as $error) {
-                echo '<li>' . htmlspecialchars($error) . '</li>';
-            }
-            echo '</ul>';
+            if (!empty($errors)) {
+                ?>
+                <div class="header">
+                    <h1>Error 404:</h1>
+                    <h2>Sanity not found. Check your inputs!</h2>
+                </div>
+                <?php
+                echo '<ul class="error">';
+                foreach ($errors as $error) {
+                    echo '<li>' . htmlspecialchars($error) . '</li>';
+                }
+                echo '</ul>';
 
+                ?>
+                <div class="login">
+                    <a href="login-page.php"><button>Go back</button></a>
+                </div>
+                <?php
+            } else {
+                ?>
+                <div class="header">
+                    <h1>Congrats!</h1>
+                    <h3>You are successfully logged in.</h3>
+                </div>
+                <div class="login">
+                    <a href="../main/main-page.php"><button>Go on!</button></a>
+                </div>
+                <?php
+            }
             ?>
-            <div class="login">
-                <a href="login-page.php"><button>Go back</button></a>
-            </div>
-            <?php
-        } else {
-            ?>
-            <div class="header">
-                <h1>Congrats!</h1>
-                <h3>You are successfully logged in.</h3>
-            </div>
-            <div class="login">
-                <a href="../main/main-page.php"><button>Go on!</button></a>
-            </div>
-            <?php
-        }
-        ?>
+        </div>
     </div>
 </body>
 

@@ -55,7 +55,7 @@
                         <input type="password" id="password" name="password" placeholder="Password">
                         <div class="submit">
                             <input type="submit" id="submit" value="Login">
-                            <h4>If you have no account yet, <a href="signup-page.php">sign up</a> here.</h4>
+                            <h4>If you have no account yet, <a href="../signup/signup-page.php">sign up</a> here.</h4>
                         </div>
                     </form>
                 </div>

@@ -10,18 +10,24 @@
 
 <body>
     <div class="nav-bar">
-        <p>Home</p>
-        <p>Home</p>
-        <p>Home</p>
-        <p>Home</p>
-        <p>Home</p>
+        <a href="#"><button>Home</button></a>
+        <a href="#"><button>Home</button></a>
+        <a href="#"><button>Home</button></a>
+        <a href="#"><button>Home</button></a>
+        <a href="#"><button>Home</button></a>
+    </div>
+    <!-- <div class="main">
+        <img src="../../Images/slides-background.jpg" alt="">
+        <div class="text">
+            <h2>Wasup mofos</h2>
+        </div>
     </div>
     <div class="main">
         <img src="../../Images/slides-background.jpg" alt="">
         <div class="text">
             <h2>Wasup mofos</h2>
         </div>
-    </div>
+    </div> -->  
 </body>
 
 </html>
