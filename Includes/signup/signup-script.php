@@ -78,10 +78,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // If there are no errors, proceed with database insertion
     if (empty($errors)) {
+        // SQL to create table Users
+        $sql = "CREATE TABLE IF NOT EXISTS Users (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(40) NOT NULL,
+            surName VARCHAR(40) NOT NULL,
+            email VARCHAR(50) NOT NULL UNIQUE,
+            password VARCHAR(255) NOT NULL
+        )";
+
+        if ($conn->query($sql) === TRUE) {
+            // SQL to insert data into Users table
+            $hashed_password = password_hash($password1, PASSWORD_DEFAULT); // Hash the password for security
+            $sql = "INSERT INTO Users (name, surName, email, password)
+            VALUES ('$name', '$surName', '$email', '$hashed_password')";
+
+            if ($conn->query($sql) != TRUE) {
+                $errors[] = "Error: " . $sql . "<br>" . $conn->error;
+            }
+        } else {
+            $errors[] = "Error creating table: " . $conn->error;
+        }
+
         // Create table name
         $tableName = $surName . " " . $name;
 
-        // SQL to create table Users
         $sql = "CREATE TABLE IF NOT EXISTS Users (
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(40) NOT NULL,
