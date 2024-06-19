@@ -33,10 +33,85 @@
         </div>
     </div>
     <div class="main">
+        <div class="container">
+            <div class="header">
+                <h1>Subjects</h1>
+                <div class="subject-buttons">
+                    <button class="add-subject">Add Subject</button>
+                </div>
+            </div>
+            <ul class="subject-list">
+                <li>
+                    <div class="subject">
+                        <span>English</span>
+                        <div class="grade-diagram"></div>
+                        <div class="grade-buttons">
+                            <button class="add-grade">Add Grade</button>
+                            <button class="delete-grade">Delete Grade</button>
+                            <button class="change-grade">Change Grade</button>
+                            <button class="delete-subject">Delete Subject</button>
+                            <button class="change-subject">Change Subject</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="subject">
+                        <span>Math</span>
+                        <div class="grade-diagram"></div>
+                        <div class="grade-buttons">
+                            <button class="add-grade">Add Grade</button>
+                            <button class="delete-grade">Delete Grade</button>
+                            <button class="change-grade">Change Grade</button>
+                            <button class="delete-subject">Delete Subject</button>
+                            <button class="change-subject">Change Subject</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="subject">
+                        <span>Science</span>
+                        <div class="grade-diagram"></div>
+                        <div class="grade-buttons">
+                            <button class="add-grade">Add Grade</button>
+                            <button class="delete-grade">Delete Grade</button>
+                            <button class="change-grade">Change Grade</button>
+                            <button class="delete-subject">Delete Subject</button>
+                            <button class="change-subject">Change Subject</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="subject">
+                        <span>History</span>
+                        <div class="grade-diagram"></div>
+                        <div class="grade-buttons">
+                            <button class="add-grade">Add Grade</button>
+                            <button class="delete-grade">Delete Grade</button>
+                            <button class="change-grade">Change Grade</button>
+                            <button class="delete-subject">Delete Subject</button>
+                            <button class="change-subject">Change Subject</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="subject">
+                        <span>Art</span>
+                        <div class="grade-diagram"></div>
+                        <div class="grade-buttons">
+                            <button class="add-grade">Add Grade</button>
+                            <button class="delete-grade">Delete Grade</button>
+                            <button class="change-grade">Change Grade</button>
+                            <button class="delete-subject">Delete Subject</button>
+                            <button class="change-subject">Change Subject</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="footer">
         <div class="nav-bar">
-            <a href="#"><button>Home</button></a>
+            <a href="main-page.php"><button>Grades</button></a>
             <a href="#"><button>Home</button></a>
             <a href="#"><button>Home</button></a>
             <a href="#"><button>Home</button></a>

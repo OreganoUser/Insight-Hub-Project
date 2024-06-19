@@ -75,8 +75,8 @@ body {
 
 .main {
     width: 100vw;
-    height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -123,4 +123,93 @@ body {
 .nav-bar button:hover {
     border: 2px solid rgb(70, 70, 70, 0.6);
     background-color: rgb(60, 60, 60, 0.6);
+}
+
+.container {
+    width: 70vw;
+    margin: 40px auto;
+    margin-bottom: 100px;
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.subject-buttons button,
+.change-subject,
+.delete-subject {
+    margin-left: 10px;
+    padding: 10px 15px;
+    border: none;
+    background: #007BFF;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.subject-buttons button:hover {
+    background: #0056b3;
+}
+
+.subject-list {
+    list-style: none;
+    padding: 0;
+}
+
+.subject-list li {
+    margin-bottom: 20px;
+}
+
+.subject {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.subject span {
+    font-size: 14pt;
+    font-weight: 800;
+}
+
+.grade-buttons {
+    margin-top: 10px;
+}
+
+.grade-buttons button {
+    margin-right: 5px;
+    padding: 8px 12px;
+    border: none;
+    background: #28a745;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.grade-buttons button:hover {
+    background: #218838;
+}
+
+.grade-diagram {
+    margin-top: 10px;
+    height: 300px;
+    background: #e9ecef;
+    border-radius: 4px;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    color: #6c757d;
 }
