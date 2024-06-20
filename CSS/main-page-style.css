@@ -135,33 +135,6 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.header h1 {
-    margin: 0;
-}
-
-.subject-buttons button,
-.change-subject,
-.delete-subject {
-    margin-left: 10px;
-    padding: 10px 15px;
-    border: none;
-    background: #007BFF;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.subject-buttons button:hover {
-    background: #0056b3;
-}
-
 .subject-list {
     list-style: none;
     padding: 0;
@@ -172,7 +145,7 @@ body {
 }
 
 .subject {
-    background: #f9f9f9;
+    background: rgb(249, 249, 249);
     padding: 15px;
     border-radius: 4px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -186,30 +159,94 @@ body {
 }
 
 .grade-buttons {
-    margin-top: 10px;
+    width: 50%;
+    display: flex;
+    align-items: center;
 }
 
-.grade-buttons button {
-    margin-right: 5px;
-    padding: 8px 12px;
+.subject-settings {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+#add-subject,
+#change-subject,
+#delete-subject {
+    margin-left: 10px;
+    padding: 10px 15px;
     border: none;
-    background: #28a745;
-    color: white;
+    background: rgb(0, 123, 255);
+    color: rgb(255, 255, 255);
     border-radius: 4px;
     cursor: pointer;
 }
 
-.grade-buttons button:hover {
-    background: #218838;
+#add-subject:hover,
+#change-subject:hover,
+#delete-subject:hover {
+    background: rgb(0, 86, 179);
 }
 
 .grade-diagram {
     margin-top: 10px;
-    height: 300px;
-    background: #e9ecef;
+    height: 450px;
+    background: rgb(233, 236, 239);
     border-radius: 4px;
     display: flex;
     align-items: end;
     justify-content: center;
-    color: #6c757d;
+    color: rgb(108, 117, 125);
+}
+
+#canvas-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0 15px;
+}
+
+.welcom {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.underHeader {
+    display: flex;
+}
+
+.subject-buttons {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 100%;
+}
+
+.subject-buttons button {
+    margin-right: 5px;
+    padding: 8px 12px;
+    border: none;
+    background: rgb(40, 167, 69);
+    color: rgb(255, 255, 255);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.subject-buttons button:hover {
+    background: #218838;
 }

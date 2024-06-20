@@ -1,3 +1,44 @@
+<?php
+// Start the session
+session_start();
+
+// Define database connection parameters
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "InsightHubUserDB";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$user_name = '';
+
+// Check if user_id is set in session
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+
+    // SQL to fetch user's name based on user_id
+    $sql = "SELECT name FROM Users WHERE id = $user_id";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // User found, fetch the name
+        $row = $result->fetch_assoc();
+        $user_name = $row['name'];
+    }
+}
+
+// Close connection
+$conn->close();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,74 +76,53 @@
     <div class="main">
         <div class="container">
             <div class="header">
-                <h1>Subjects</h1>
-                <div class="subject-buttons">
-                    <button class="add-subject">Add Subject</button>
+                <div class="welcom">
+                    <h1>Welcom to the Grading-system <?php echo htmlspecialchars($user_name); ?>!</h1>
+                    <h2>You can add your Subjects and grades here:</h2>
+                </div>
+                <div class="underHeader">
+                    <h1>Subjects</h1>
+                    <div class="subject-buttons">
+                        <button id="add-subject">Add Subject</button>
+                    </div>
                 </div>
             </div>
             <ul class="subject-list">
                 <li>
                     <div class="subject">
                         <span>English</span>
-                        <div class="grade-diagram"></div>
-                        <div class="grade-buttons">
-                            <button class="add-grade">Add Grade</button>
-                            <button class="delete-grade">Delete Grade</button>
-                            <button class="change-grade">Change Grade</button>
-                            <button class="delete-subject">Delete Subject</button>
-                            <button class="change-subject">Change Subject</button>
+                        <div class="grade-diagram">
+                            <canvas id="canvas-container"></canvas>
+                            <script src="../../JS/script.js"></script>
+                        </div>
+                        <div class="subject-buttons">
+                            <div class="grade-buttons">
+                                <button id="add-grade">Add Grade</button>
+                                <button id="delete-grade">Delete Grade</button>
+                                <button id="change-grade">Change Grade</button>
+                            </div>
+                            <div class="subject-settings">
+                                <button id="delete-subject">Delete Subject</button>
+                                <button id="change-subject">Change Subject</button>
+                            </div>
                         </div>
                     </div>
-                </li>
-                <li>
                     <div class="subject">
-                        <span>Math</span>
-                        <div class="grade-diagram"></div>
-                        <div class="grade-buttons">
-                            <button class="add-grade">Add Grade</button>
-                            <button class="delete-grade">Delete Grade</button>
-                            <button class="change-grade">Change Grade</button>
-                            <button class="delete-subject">Delete Subject</button>
-                            <button class="change-subject">Change Subject</button>
+                        <span>English</span>
+                        <div class="grade-diagram">
+                            <canvas id="canvas-container"></canvas>
+                            <script src="../../JS/script.js"></script>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="subject">
-                        <span>Science</span>
-                        <div class="grade-diagram"></div>
-                        <div class="grade-buttons">
-                            <button class="add-grade">Add Grade</button>
-                            <button class="delete-grade">Delete Grade</button>
-                            <button class="change-grade">Change Grade</button>
-                            <button class="delete-subject">Delete Subject</button>
-                            <button class="change-subject">Change Subject</button>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="subject">
-                        <span>History</span>
-                        <div class="grade-diagram"></div>
-                        <div class="grade-buttons">
-                            <button class="add-grade">Add Grade</button>
-                            <button class="delete-grade">Delete Grade</button>
-                            <button class="change-grade">Change Grade</button>
-                            <button class="delete-subject">Delete Subject</button>
-                            <button class="change-subject">Change Subject</button>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="subject">
-                        <span>Art</span>
-                        <div class="grade-diagram"></div>
-                        <div class="grade-buttons">
-                            <button class="add-grade">Add Grade</button>
-                            <button class="delete-grade">Delete Grade</button>
-                            <button class="change-grade">Change Grade</button>
-                            <button class="delete-subject">Delete Subject</button>
-                            <button class="change-subject">Change Subject</button>
+                        <div class="subject-buttons">
+                            <div class="grade-buttons">
+                                <button id="add-grade">Add Grade</button>
+                                <button id="delete-grade">Delete Grade</button>
+                                <button id="change-grade">Change Grade</button>
+                            </div>
+                            <div class="subject-settings">
+                                <button id="delete-subject">Delete Subject</button>
+                                <button id="change-subject">Change Subject</button>
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -112,10 +132,10 @@
     <div class="footer">
         <div class="nav-bar">
             <a href="main-page.php"><button>Grades</button></a>
-            <a href="#"><button>Home</button></a>
-            <a href="#"><button>Home</button></a>
-            <a href="#"><button>Home</button></a>
-            <a href="#"><button>Home</button></a>
+            <a href="main-page.php"><button>Grades</button></a>
+            <a href="main-page.php"><button>Grades</button></a>
+            <a href="main-page.php"><button>Grades</button></a>
+            <a href="main-page.php"><button>Grades</button></a>
         </div>
     </div>
 </body>

@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If there are no errors, proceed with database validation
     if (empty($errors)) {
         // SQL to search for the user with the email
-        $sql = "SELECT email, password FROM Users WHERE email = ?";
+        $sql = "SELECT id, email, password FROM Users WHERE email = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -56,9 +56,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // User exists, fetch the hashed password from the database
             $row = $result->fetch_assoc();
             $hashed_password = $row['password'];
+            $user_id = $row['id']; // Get the user's ID
 
             // Verify the hashed password with the provided password
-            if (!password_verify($password, $hashed_password)) {
+            if (password_verify($password, $hashed_password)) {
+                // Save the user ID in the session
+                $_SESSION['user_id'] = $user_id;
+            } else {
                 $errors[] = "Incorrect password or email";
             }
         } else {
