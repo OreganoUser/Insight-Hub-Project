@@ -1,4 +1,5 @@
 <?php
+
 // Start the session
 session_start();
 
@@ -36,8 +37,6 @@ if (isset($_SESSION['user_id'])) {
 // Close connection
 $conn->close();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
