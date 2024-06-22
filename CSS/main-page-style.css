@@ -200,6 +200,10 @@ body {
     color: rgb(108, 117, 125);
 }
 
+.grade-diagram p {
+    color: black;
+}
+
 #canvas-container {
     width: 100%;
     height: 100%;

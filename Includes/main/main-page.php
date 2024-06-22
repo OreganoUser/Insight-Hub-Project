@@ -18,6 +18,7 @@ if ($conn->connect_error) {
 }
 
 $user_name = '';
+$user_id = '';
 
 // Check if user_id is set in session
 if (isset($_SESSION['user_id'])) {
@@ -33,7 +34,6 @@ if (isset($_SESSION['user_id'])) {
         $user_name = $row['name'];
     }
 }
-
 // Close connection
 $conn->close();
 ?>
@@ -46,6 +46,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main page - Insight Hub</title>
     <link rel="stylesheet" href="../../CSS/main-page-style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -60,15 +61,7 @@ $conn->close();
             </div>
             <div id="menu-bar-2">
                 <img src="../../Images/arrow-forward.svg" alt="" id="accessibility">
-                <p>Laera Pierluca</p>
-            </div>
-            <div id="menu-bar-3">
-                <img src="../../Images/arrow-forward.svg" alt="" id="accessibility">
-                <p>Kasztelan Olaf (Polski)</p>
-            </div>
-            <div id="menu-bar-4">
-                <img src="../../Images/arrow-forward.svg" alt="" id="accessibility">
-                <p>Lejeune Charel</p>
+                <p><?php echo htmlspecialchars($user_name); ?></p>
             </div>
         </div>
     </div>
@@ -76,7 +69,7 @@ $conn->close();
         <div class="container">
             <div class="header">
                 <div class="welcom">
-                    <h1>Welcom to the Grading-system <?php echo htmlspecialchars($user_name); ?>!</h1>
+                    <h1>Welcome to the Grading-system <?php echo htmlspecialchars($user_name); ?>!</h1>
                     <h2>You can add your Subjects and grades here:</h2>
                 </div>
                 <div class="underHeader">
@@ -86,57 +79,27 @@ $conn->close();
                     </div>
                 </div>
             </div>
-            <ul class="subject-list">
-                <li>
-                    <div class="subject">
-                        <span>English</span>
-                        <div class="grade-diagram">
-                            <canvas id="canvas-container"></canvas>
-                            <script src="../../JS/script.js"></script>
-                        </div>
-                        <div class="subject-buttons">
-                            <div class="grade-buttons">
-                                <button id="add-grade">Add Grade</button>
-                                <button id="delete-grade">Delete Grade</button>
-                                <button id="change-grade">Change Grade</button>
-                            </div>
-                            <div class="subject-settings">
-                                <button id="delete-subject">Delete Subject</button>
-                                <button id="change-subject">Change Subject</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subject">
-                        <span>English</span>
-                        <div class="grade-diagram">
-                            <canvas id="canvas-container"></canvas>
-                            <script src="../../JS/script.js"></script>
-                        </div>
-                        <div class="subject-buttons">
-                            <div class="grade-buttons">
-                                <button id="add-grade">Add Grade</button>
-                                <button id="delete-grade">Delete Grade</button>
-                                <button id="change-grade">Change Grade</button>
-                            </div>
-                            <div class="subject-settings">
-                                <button id="delete-subject">Delete Subject</button>
-                                <button id="change-subject">Change Subject</button>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+            <ul class="subject-list" id="subject-list">
+                <!-- Subjects will be dynamically inserted here by JavaScript -->
             </ul>
         </div>
     </div>
     <div class="footer">
         <div class="nav-bar">
             <a href="main-page.php"><button>Grades</button></a>
-            <a href="main-page.php"><button>Grades</button></a>
-            <a href="main-page.php"><button>Grades</button></a>
-            <a href="main-page.php"><button>Grades</button></a>
-            <a href="main-page.php"><button>Grades</button></a>
         </div>
     </div>
+    <div id="subjectModal" class="modal">
+        <!-- Modal content -->
+    </div>
+
+    <!-- Modal for adding/deleting grades -->
+    <div id="gradeModal" class="modal">
+        <!-- Modal content -->
+    </div>
+
+    <!-- Link to external JavaScript file -->
+    <script src="../../JS/server.js"></script>
 </body>
 
 </html>

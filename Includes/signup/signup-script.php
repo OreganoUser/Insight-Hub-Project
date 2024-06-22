@@ -78,62 +78,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // If there are no errors, proceed with database insertion
     if (empty($errors)) {
-        // SQL to create table Users
-        $sql = "CREATE TABLE IF NOT EXISTS Users (
-            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(40) NOT NULL,
-            surName VARCHAR(40) NOT NULL,
-            email VARCHAR(50) NOT NULL UNIQUE,
-            password VARCHAR(255) NOT NULL
-        )";
+        // SQL to insert data into Users table
+        $hashed_password = password_hash($password1, PASSWORD_DEFAULT); // Hash the password for security
+        $sql = "INSERT INTO Users (name, surName, email, password)
+        VALUES (?, ?, ?, ?)";
 
-        if ($conn->query($sql) === TRUE) {
-            // SQL to insert data into Users table
-            $hashed_password = password_hash($password1, PASSWORD_DEFAULT); // Hash the password for security
-            $sql = "INSERT INTO Users (name, surName, email, password)
-            VALUES (?, ?, ?, ?)";
-
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssss", $name, $surName, $email, $hashed_password);
-
-            if ($stmt->execute() === TRUE) {
-                // Get the inserted user's ID
-                $user_id = $stmt->insert_id;
-
-                // Create a user-specific table
-                $userTable = $surName . $name; // Table name without spaces
-                $userTable = preg_replace("/[^a-zA-Z0-9]/", "", $userTable); // Remove any non-alphanumeric characters
-
-                $sql = "CREATE TABLE IF NOT EXISTS $userTable (
-                    id INT(6) UNSIGNED,
-                    name VARCHAR(40) NOT NULL,
-                    surName VARCHAR(40) NOT NULL,
-                    subjects VARCHAR(255),
-                    school_class VARCHAR(50),
-                    PRIMARY KEY (id),
-                    FOREIGN KEY (id) REFERENCES Users(id)
-                )";
-
-                if ($conn->query($sql) === TRUE) {
-                    // Insert data into the user-specific table
-                    $sql = "INSERT INTO $userTable (id, name, surName) VALUES (?, ?, ?)";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("iss", $user_id, $name, $surName);
-
-                    if ($stmt->execute() !== TRUE) {
-                        $errors[] = "Error inserting data into user-specific table: " . $stmt->error;
-                    }
-                } else {
-                    $errors[] = "Error creating user-specific table: " . $conn->error;
-                }
-            } else {
-                $errors[] = "Error: " . $stmt->error;
-            }
-
-            $stmt->close();
-        } else {
-            $errors[] = "Error creating Users table: " . $conn->error;
-        }
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssss", $name, $surName, $email, $hashed_password);
+        $stmt->execute();
+        $stmt->close();
     }
 
     // Close connection
