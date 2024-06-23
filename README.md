@@ -1,2 +1,2 @@
 # Penguin
-Hello mate!
+Pinguin
