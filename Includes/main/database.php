@@ -20,7 +20,7 @@ $user_id = $_SESSION['user_id'];
 
 
 // Perform SQL query
-$sql = "SELECT * FROM Grades WHERE user_id = '".$user_id."';";
+$sql = "SELECT * FROM Grades WHERE user_id = '" . $user_id . "';";
 $result = $conn->query($sql);
 
 // Initialize an array to hold results

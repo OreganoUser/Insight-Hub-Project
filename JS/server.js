@@ -1,77 +1,3 @@
-/*
-$(document).ready(function(){
-$.ajax({
-    url: 'database.php',
-    method: 'GET',
-    dataType: 'json',
-    success: function(data) {
-        console.log(data);
-        
-        // Initialize the info object to hold the structured data
-        const info = {};
-
-            // Process each item in the data array
-            for (let i = 0; i < data.length; i += 1) {
-                let semester = data[i].semester_name;
-                let subject = data[i].subject_name;
-                let grade = data[i].grade;
-
-                // Ensure the semester exists in the info object
-                if (!info[semester]) {
-                    info[semester] = {};
-                }
-
-                // Ensure the subject exists under the semester in the info object
-                if (!info[semester][subject]) {
-                    info[semester][subject] = [];
-                }
-
-                // Push the grade into the appropriate subject under the semester
-                info[semester][subject].push(grade);
-            }
-
-            // Logging the structured info object
-            console.log(info);
-
-
-            // Get the canvas element and its 2D drawing context
-            let canvas = document.getElementById('canvas-container');
-            let ctx = canvas.getContext('2d');
-
-            function drawUserData() {
-                let grade;
-                let length = info['Semester 1'].English.length;
-                let height = canvas.height;
-                let width = canvas.width;
-                let x1;
-                let y1;
-                let x2;
-                let y2
-
-                for(let i = 0; i < length; i += 1){
-                    grade = info['Semester 1'].English[i];
-                    {grade >= 30 ? ctx.fillStyle = 'green': ctx.fillStyle = 'red'};
-
-                    x1 = ((width / length) * i) + 2;
-                    y1 = height; 
-                    x2 = (width / length) * 0.7;
-                    y2 = -((height / 60) * grade);
-                    ctx.fillRect(x1, y1, x2, y2);
-                    ctx.fillStyle = 'black';
-                    ctx.strokeRect(x1, y1, x2, y2);
-
-                    ctx.font = '10px Arial';
-                    ctx.fillText(grade + "", x1 + (x2 / 4), y1 - 5);
-                }
-            }
-
-            drawUserData();
-        }
-    });
-});
-*/
-
-
 $(document).ready(function() {
     // Make AJAX request to fetch data from database.php
     $.ajax({
@@ -103,40 +29,49 @@ $(document).ready(function() {
 
             info[semester][subject].push(grade);
         }
-
+        console.log(info);
         return info;
     }
 
     function renderSubjects(info) {
-        const subjectList = $('#subject-list');
+        const subjectListSemester1 = $('#Semester1-subject-list');
+        const subjectListSemester2 = $('#Semester2-subject-list');
 
         for (let semester in info) {
-            for (let subject in info[semester]) {
-                const subjectId = `${semester}-${subject}`.replace(/\s+/g, '-').toLowerCase();
-                const subjectItem = `
-                    <li>
-                        <div class="subject" id="${subjectId}">
-                            <span>${subject}</span>
-                            <div class="grade-diagram">
-                                <canvas id="canvas-${subjectId}" width="400" height="200"></canvas>
-                            </div>
-                            <div class="subject-buttons">
-                                <div class="grade-buttons">
-                                    <button id="add-grade-${subjectId}">Add Grade</button>
-                                    <button id="delete-grade-${subjectId}">Delete Grade</button>
-                                    <button id="change-grade-${subjectId}">Change Grade</button>
-                                </div>
-                                <div class="subject-settings">
-                                    <button id="delete-subject-${subjectId}">Delete Subject</button>
-                                    <button id="change-subject-${subjectId}">Change Subject</button>
+            if (semester === 'Semester 1') {
+                for (let subject in info[semester]) {
+                    const subjectId = `${semester}-${subject}`.replace(/\s+/g, '-').toLowerCase();
+                    const subjectItem = `
+                        <li>
+                            <div class="subject" id="${subjectId}">
+                                <span>${subject}</span>
+                                <div class="grade-diagram">
+                                    <canvas id="canvas-${subjectId}"></canvas>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                `;
-                subjectList.append(subjectItem);
+                        </li>
+                    `;
+                    subjectListSemester1.append(subjectItem);
 
-                drawGradesOnCanvas(`canvas-${subjectId}`, info[semester][subject]);
+                    drawGradesOnCanvas(`canvas-${subjectId}`, info[semester][subject]);
+                }
+            } else {
+                for (let subject in info[semester]) {
+                    const subjectId = `${semester}-${subject}`.replace(/\s+/g, '-').toLowerCase();
+                    const subjectItem = `
+                        <li>
+                            <div class="subject" id="${subjectId}">
+                                <span>${subject}</span>
+                                <div class="grade-diagram">
+                                    <canvas id="canvas-${subjectId}"></canvas>
+                                </div>
+                            </div>
+                        </li>
+                    `;
+                    subjectListSemester2.append(subjectItem);
+
+                    drawGradesOnCanvas(`canvas-${subjectId}`, info[semester][subject]);
+                }
             }
         }
     }
@@ -161,80 +96,57 @@ $(document).ready(function() {
             ctx.fillStyle = 'black';
             ctx.strokeRect(x1, y1, x2, y2);
 
-            ctx.font = '10px Arial';
+            ctx.font = '10px Times New Roman';
             ctx.fillText(grade + "", x1 + (x2 / 4), y1 - 5);
         }
     }
 
-    // Function to open subject modal for adding/deleting subjects
-    function openSubjectModal() {
-        $('#subjectModal').css('display', 'block');
-    }
+    // Modal logic
+    const modal = $('#modal');
+    const btn = $('#edit-button');
+    const span = $('.close');
 
-    // Function to open grade modal for adding/deleting grades
-    function openGradeModal() {
-        $('#gradeModal').css('display', 'block');
-    }
-
-    // Close modal when clicking on close button
-    $('.close').click(function() {
-        $('#subjectModal').css('display', 'none');
-        $('#gradeModal').css('display', 'none');
+    btn.on('click', function() {
+        modal.css('display', 'block');
     });
 
-    // Close modal when clicking outside of it
-    $(window).click(function(event) {
-        if (event.target == document.getElementById('subjectModal')) {
-            $('#subjectModal').css('display', 'none');
-        } else if (event.target == document.getElementById('gradeModal')) {
-            $('#gradeModal').css('display', 'none');
+    span.on('click', function() {
+        modal.css('display', 'none');
+    });
+
+    $(window).on('click', function(event) {
+        if ($(event.target).is(modal)) {
+            modal.css('display', 'none');
         }
     });
 
-    // AJAX request to add/delete subjects
-    $('#add-subject-semester-1, #add-subject-semester-2, #delete-subject-semester-1, #delete-subject-semester-2').click(function() {
-        openSubjectModal();
-    });
-
-    $('#subjectForm').submit(function(event) {
+    // Handle form submission in modal
+    $('#modal-form').on('submit', function(event) {
+        // Prevent the default form submission
         event.preventDefault();
-        var formData = $(this).serialize();
-        $.ajax({
-            url: 'addDeleteSubject.php',
-            method: 'POST',
-            data: formData,
-            success: function(response) {
-                alert(response);
-                $('#subjectModal').css('display', 'none');
-                location.reload(); // Reload page to update subject list
-            },
-            error: function(xhr, status, error) {
-                console.error('Error:', error);
-            }
-        });
-    });
+        modal.css('display', 'none');
 
-    // AJAX request to add/delete grades
-    $('#add-grade-semester-1, #add-grade-semester-2, #delete-grade-semester-1, #delete-grade-semester-2').click(function() {
-        openGradeModal();
-    });
+        // Collect form data
+        const semester = $('#semester').val();
+        const type = $('#type').val();
+        const action = $('#action').val();
+        const subject = $('#subject').val();
+        const grade = $('#grade').val();
 
-    $('#gradeForm').submit(function(event) {
-        event.preventDefault();
-        var formData = $(this).serialize();
+        // AJAX request to handle form submission
         $.ajax({
-            url: 'addDeleteGrade.php',
+            url: 'manage.php',
             method: 'POST',
-            data: formData,
-            success: function(response) {
-                alert(response);
-                $('#gradeModal').css('display', 'none');
-                location.reload(); // Reload page to update grade diagram
+            data: {
+                semester: semester,
+                type: type,
+                action: action,
+                subject: subject,
+                grade: grade
             },
-            error: function(xhr, status, error) {
-                console.error('Error:', error);
+            success: function(response) {
+                location.reload(); // Reload the page to reflect changes
             }
         });
     });
 });
-

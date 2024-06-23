@@ -21,15 +21,15 @@
             </div>
             <div id="menu-bar-2">
                 <img src="Images/arrow-forward.svg" alt="" id="accessibility">
-                <p>Laera Pierluca</p>
+                <a href="Includes/main/lol.php"><p>Laera Pierluca</p></a>
             </div>
             <div id="menu-bar-3">
                 <img src="Images/arrow-forward.svg" alt="" id="accessibility">
-                <p>Kasztelan Olaf (Polski)</p>
+                <a href="Includes/main/lol.php"><p>Kasztelan Olaf</p></a>
             </div>
             <div id="menu-bar-4">
                 <img src="Images/arrow-forward.svg" alt="" id="accessibility">
-                <p>Lejeune Charel</p>
+                <a href="Includes/main/lol.php"><p>Lejeune Charel</p></a>
             </div>
         </div>
     </div>

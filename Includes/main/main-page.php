@@ -47,24 +47,10 @@ $conn->close();
     <title>Main page - Insight Hub</title>
     <link rel="stylesheet" href="../../CSS/main-page-style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../JS/server.js"></script>
 </head>
 
 <body>
-    <div class="menu-container">
-        <div class="menu" id="menu">
-            <img src="../../Images/bars.svg" alt="" id="menu">
-        </div>
-        <div class="menu-bar" id="menu-bar">
-            <div id="menu-bar-1">
-                <img src="../../Images/accessibility-outline.svg" alt="" id="accessibility">
-                <p>Do you need Help ?</p>
-            </div>
-            <div id="menu-bar-2">
-                <img src="../../Images/arrow-forward.svg" alt="" id="accessibility">
-                <p><?php echo htmlspecialchars($user_name); ?></p>
-            </div>
-        </div>
-    </div>
     <div class="main">
         <div class="container">
             <div class="header">
@@ -74,32 +60,66 @@ $conn->close();
                 </div>
                 <div class="underHeader">
                     <h1>Subjects</h1>
-                    <div class="subject-buttons">
-                        <button id="add-subject">Add Subject</button>
+                    <div class="edit-button">
+                        <button id="edit-button">Edit Grades/Subjects</button>
                     </div>
                 </div>
             </div>
-            <ul class="subject-list" id="subject-list">
+            <ul class="subject-list" id="Semester1-subject-list">
+                <h1>Semester 1:</h1>
+                <!-- Subjects will be dynamically inserted here by JavaScript -->
+            </ul>
+            <ul class="subject-list" id="Semester2-subject-list">
+                <h1>Semester 2:</h1>
                 <!-- Subjects will be dynamically inserted here by JavaScript -->
             </ul>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Manage Grades/Subjects</h2>
+            <form id="modal-form">
+                <label for="semester">Choose Semester:</label>
+                <select id="semester" name="semester">
+                    <option value="Semester 1">Semester 1</option>
+                    <option value="Semester 2">Semester 2</option>
+                </select>
+
+                <label for="type">Choose Type:</label>
+                <select id="type" name="type">
+                    <option value="subject">Subject</option>
+                    <option value="grade">Grade</option>
+                </select>
+
+                <label for="action">Choose Action:</label>
+                <select id="action" name="action">
+                    <option value="add">Add</option>
+                    <option value="delete">Delete</option>
+                </select>
+
+                <label for="subject">Subject Input:</label>
+                <input type="text" id="subject" name="subject" required>
+
+                <label for="grade">Grade Input:</label>
+                <input type="number" id="grade" name="grade" required>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
     <div class="footer">
         <div class="nav-bar">
             <a href="main-page.php"><button>Grades</button></a>
+            <a href="lol.php"><button>Luca</button></a>
+            <a href="lol.php"><button>Olaf</button></a>
+            <a href="lol.php"><button>Charel</button></a>
+            <a href="logout.php"><button>Logout</button></a>
         </div>
     </div>
-    <div id="subjectModal" class="modal">
-        <!-- Modal content -->
-    </div>
-
-    <!-- Modal for adding/deleting grades -->
-    <div id="gradeModal" class="modal">
-        <!-- Modal content -->
-    </div>
-
-    <!-- Link to external JavaScript file -->
-    <script src="../../JS/server.js"></script>
 </body>
 
 </html>
