@@ -11,10 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = "root";
     $dbname = "InsightHubUserDB";
 
-    // Create connection
+    // Create connection to the database
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Check connection
+    // Check connection for any errors
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
@@ -28,40 +28,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return $data;
     }
 
-    // Fetch form data
+    // Fetch and sanitize form data
     $name = sanitize_input($_POST["name"]);
     $surName = sanitize_input($_POST["surName"]);
     $email = sanitize_input($_POST["Email"]);
     $password1 = sanitize_input($_POST["password1"]);
     $password2 = sanitize_input($_POST["password2"]);
 
-    // Validate inputs
+    // Array to store validation errors
     $errors = array();
 
+    // Validate name
     if (empty($name)) {
         $errors[] = "Name is required";
     } else if (!preg_match("/^[a-zA-Z ]{1,40}$/", $name)) {
         $errors[] = "Name must be between 1 and 40 characters and contain only letters and spaces";
     }
 
+    // Validate surname
     if (empty($surName)) {
         $errors[] = "Surname is required";
     } else if (!preg_match("/^[a-zA-Z ]{1,40}$/", $surName)) {
         $errors[] = "Surname must be between 1 and 40 characters and contain only letters and spaces";
     }
 
+    // Validate email
     if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format";
     }
 
+    // Validate password
     if (empty($password1) || strlen($password1) < 8 || !preg_match("/[A-Z]/", $password1) || !preg_match("/[0-9]/", $password1) || !preg_match("/[!@#\$%\^\&*\)\(+=._-]/", $password1)) {
         $errors[] = "Password must be at least 8 characters long and contain at least one uppercase letter, one special character, and some numbers";
     }
 
+    // Check if passwords match
     if ($password1 != $password2) {
         $errors[] = "Passwords do not match";
     }
 
+    // Check if email already exists in the database
     if (empty($errors)) {
         $sql = "SELECT email FROM Users WHERE email = ?";
         $stmt = $conn->prepare($sql);
@@ -78,28 +84,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // If there are no errors, proceed with database insertion
     if (empty($errors)) {
+        // Hash the password for security
+        $hashed_password = password_hash($password1, PASSWORD_DEFAULT);
         // SQL to insert data into Users table
-        $hashed_password = password_hash($password1, PASSWORD_DEFAULT); // Hash the password for security
         $sql = "INSERT INTO Users (name, surName, email, password)
-        VALUES (?, ?, ?, ?)";
+                VALUES (?, ?, ?, ?)";
 
+        // Prepare and execute the statement
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ssss", $name, $surName, $email, $hashed_password);
         $stmt->execute();
         $stmt->close();
     }
 
-    // Close connection
+    // Close database connection
     $conn->close();
 
-    // Store errors in session
+    // Store errors in session if any
     if (!empty($errors)) {
         $_SESSION['errors'] = $errors;
     } else {
         $_SESSION['errors'] = [];
     }
 
-    //Redirect to signup-validation.php
+    // Redirect to signup-validation.php
     header("Location: signup-validation.php");
 
     exit();

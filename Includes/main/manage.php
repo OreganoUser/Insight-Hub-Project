@@ -23,8 +23,10 @@ $action = $conn->real_escape_string($_POST['action']);
 $subject = $conn->real_escape_string($_POST['subject']);
 $grade = $conn->real_escape_string($_POST['grade']);
 
+// Initialize status
 $status = 'unknown';
 
+// Check the type of operation: subject or grade
 if ($type == 'subject') {
     if ($action == 'add') {
         // SQL to add a new subject
@@ -32,19 +34,19 @@ if ($type == 'subject') {
                 VALUES (" . $_SESSION['user_id'] . ", '$semester', '$subject', $grade)";
         $conn->query($sql);
     } elseif ($action == 'delete') {
-        // SQL to add a new subject
+        // SQL to delete a subject
         $sql = "DELETE FROM Grades WHERE user_id = " . $_SESSION['user_id'] . " AND semester_name = '" . $semester . "' AND subject_name = '" . $subject . "'";
         $conn->query($sql);
     }
 } elseif ($type == 'grade') {
     if ($action == 'add') {
-        // SQL to add a new subject
+        // SQL to add a new grade
         $sql = "INSERT INTO Grades (user_id, semester_name, subject_name, grade) 
                 VALUES (" . $_SESSION['user_id'] . ", '$semester', '$subject', $grade)";
         $conn->query($sql);
     } elseif ($action == 'delete') {
-        // SQL to add a new subject
-        $sql = "DELETE FROM Grades WHERE user_id = " . $_SESSION['user_id'] . " AND semester_name = '" . $semester . "' AND subject_name = '" . $subject . "' AND grade = ".$grade."";
+        // SQL to delete a grade
+        $sql = "DELETE FROM Grades WHERE user_id = " . $_SESSION['user_id'] . " AND semester_name = '" . $semester . "' AND subject_name = '" . $subject . "' AND grade = " . $grade . "";
         $conn->query($sql);
     }
 }

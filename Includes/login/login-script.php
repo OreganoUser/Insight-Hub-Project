@@ -35,10 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate inputs
     $errors = array();
 
+    // Validate email
     if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format";
     }
 
+    // Validate password
     if (empty($password)) {
         $errors[] = "Password is required";
     }
@@ -52,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
         $result = $stmt->get_result();
 
+        // Check if user exists
         if ($result->num_rows > 0) {
             // User exists, fetch the hashed password from the database
             $row = $result->fetch_assoc();
@@ -75,14 +78,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Close connection
     $conn->close();
 
-    // Store errors in session and redirect to this script
+    // Store errors in session
     if (!empty($errors)) {
         $_SESSION['errors'] = $errors;
     } else {
         $_SESSION['errors'] = [];
     }
 
-    //Redirect to login-validation.php
+    // Redirect to login-validation.php
     header("Location: login-validation.php");
 
     exit();
