@@ -114,9 +114,9 @@ $conn->close();
     <div class="footer">
         <div class="nav-bar">
             <a href="main-page.php"><button>Grades</button></a>
-            <a href="lol.php"><button>Luca</button></a>
-            <a href="lol.php"><button>Olaf</button></a>
-            <a href="lol.php"><button>Charel</button></a>
+            <a href="luca.php"><button>Luca</button></a>
+            <a href="olaf.php"><button>Olaf</button></a>
+            <a href="charel.php"><button>Charel</button></a>
             <a href="logout.php"><button>Logout</button></a>
         </div>
     </div>

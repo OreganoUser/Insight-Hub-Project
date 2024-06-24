@@ -28,19 +28,19 @@
                             </div>
                             <div id="menu-bar-2">
                                 <img src="../../Images/arrow-forward.svg" alt="" id="accessibility">
-                                <a href="../main/lol.php">
+                                <a href="../main/luca.php">
                                     <p>Laera Pierluca</p>
                                 </a>
                             </div>
                             <div id="menu-bar-3">
                                 <img src="../../Images/arrow-forward.svg" alt="" id="accessibility">
-                                <a href="../main/lol.php">
+                                <a href="../main/olaf.php">
                                     <p>Kasztelan Olaf</p>
                                 </a>
                             </div>
                             <div id="menu-bar-4">
                                 <img src="../../Images/arrow-forward.svg" alt="" id="accessibility">
-                                <a href="../main/lol.php">
+                                <a href="../main/charel.php">
                                     <p>Lejeune Charel</p>
                                 </a>
                             </div>

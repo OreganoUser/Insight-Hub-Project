@@ -18,6 +18,17 @@ body {
     overflow: hidden;
 }
 
+#play-sound-btn {
+    position: absolute;
+    top: 80vh;
+    left: 50vw;
+    padding: 20px 30px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
 video {
     width: 100%;
     height: auto;
