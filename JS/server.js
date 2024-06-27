@@ -1,3 +1,7 @@
+/*
+Charel
+*/
+
 $(document).ready(function() {
     // Make AJAX request to fetch data from database.php
     $.ajax({

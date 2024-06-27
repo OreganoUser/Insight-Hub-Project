@@ -1,4 +1,8 @@
 <?php
+/*
+Charel
+*/
+
 // Start the session to access session variables
 session_start();
 
